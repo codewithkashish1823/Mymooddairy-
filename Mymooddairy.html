@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Mood Diary</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fceff9;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      color: #e91e63;
+    }
+    select, textarea, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .entry {
+      background: #fff;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: left;
+      width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌈 My Mood Diary</h1>
+
+  <label for="mood">Today's Mood:</label><br>
+  <select id="mood">
+    <option>😊 Happy</option>
+    <option>😢 Sad</option>
+    <option>😰 Stressed</option>
+    <option>😄 Excited</option>
+  </select><br>
+
+  <label for="note">Write a note:</label><br>
+  <textarea id="note" rows="3" cols="30" placeholder="How was your day?"></textarea><br>
+
+  <button onclick="addEntry()">Add Entry</button>
+
+  <h2>📖 Your Mood Entries</h2>
+  <div id="entries"></div>
+
+  <script>
+    function addEntry() {
+      const mood = document.getElementById('mood').value;
+      const note = document.getElementById('note').value;
+
+      if (note.trim() === "") {
+        alert("Please write something!");
+        return;
+      }
+
+      const entryDiv = document.createElement("div");
+      entryDiv.className = "entry";
+      entryDiv.innerHTML = `<strong>${mood}</strong><p>${note}</p>`;
+
+      document.getElementById('entries').prepend(entryDiv);
+
+      // Clear the textarea
+      document.getElementById('note').value = "";
+    }
+  </script>
+
+</body>
+</html>
